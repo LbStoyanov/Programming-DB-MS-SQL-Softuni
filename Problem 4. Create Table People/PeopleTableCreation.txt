@@ -1,0 +1,11 @@
+CREATE TABLE [People](
+	[Id] INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
+	[Name] NVARCHAR(200) NOT NULL,
+	[Age] INT,
+	[Picture] INT,
+	[Height] INT,
+	[Weight] INT,
+	[Gender] INT,
+	[Birthdate] INT,
+	[Biography] INT,
+);
