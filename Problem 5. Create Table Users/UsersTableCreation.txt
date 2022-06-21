@@ -15,3 +15,6 @@ INSERT INTO [Users]([Username],[Password],[ProfilePicture],[LastLoginTime],[IsDe
 ('Kalitko', 'dasaznai12345678', null, '2015-12-08', 'true'),
 ('Margaritko', 'dasaznai1234567891', null, '2015-12-08', 'true'),
 ('Pitko', 'dasaznai1234', null, '2015-12-08', 'false')
+
+ALTER TABLE [Users]
+DROP CONSTRAINT PK__People__3214EC077BE78F6C
