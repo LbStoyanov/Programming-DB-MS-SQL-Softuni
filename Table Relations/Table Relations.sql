@@ -49,3 +49,48 @@ REFERENCES [dbo].[Passports] ([PassportID])
 
 ALTER TABLE [dbo].[Persons] CHECK CONSTRAINT [FK_Persons_Passports]
 
+--02. One-To-Many Relationship
+
+
+CREATE TABLE [dbo].[Manufacturers](
+	[ManufacturerID] [int] NOT NULL,
+	[Name] [nchar](20) NOT NULL,
+	[EstablishedOn] [datetime2](7) NOT NULL,
+ CONSTRAINT [PK_Manufacturers] PRIMARY KEY CLUSTERED 
+(
+	[ManufacturerID] ASC
+)
+)
+
+CREATE TABLE [dbo].[Models](
+	[ModelID] [int] NOT NULL,
+	[Name] [nvarchar](20) NOT NULL,
+	[ManufacturerID] [int] NOT NULL,
+ CONSTRAINT [PK_Models] PRIMARY KEY CLUSTERED 
+(
+	[ModelID] ASC
+)
+)
+
+INSERT [dbo].[Manufacturers] ([ManufacturerID], [Name], [EstablishedOn]) VALUES (1, N'BMW ', CAST(N'1916-03-07T00:00:00.0000000' AS DateTime2))
+
+INSERT [dbo].[Manufacturers] ([ManufacturerID], [Name], [EstablishedOn]) VALUES (2, N'Tesla ', CAST(N'2003-01-01T00:00:00.0000000' AS DateTime2))
+
+INSERT [dbo].[Manufacturers] ([ManufacturerID], [Name], [EstablishedOn]) VALUES (3, N'Lada ', CAST(N'1966-05-01T00:00:00.0000000' AS DateTime2))
+
+INSERT [dbo].[Models] ([ModelID], [Name], [ManufacturerID]) VALUES (101, N'X1', 1)
+
+INSERT [dbo].[Models] ([ModelID], [Name], [ManufacturerID]) VALUES (102, N'i6', 1)
+
+INSERT [dbo].[Models] ([ModelID], [Name], [ManufacturerID]) VALUES (103, N'Model S', 2)
+
+INSERT [dbo].[Models] ([ModelID], [Name], [ManufacturerID]) VALUES (104, N'Model X', 2)
+
+INSERT [dbo].[Models] ([ModelID], [Name], [ManufacturerID]) VALUES (105, N'Model 3', 2)
+
+INSERT [dbo].[Models] ([ModelID], [Name], [ManufacturerID]) VALUES (106, N'Nova', 3)
+
+ALTER TABLE [dbo].[Models]  WITH CHECK ADD  CONSTRAINT [FK_Models_Manufacturer] FOREIGN KEY([ManufacturerID])
+REFERENCES [dbo].[Manufacturers] ([ManufacturerID])
+
+ALTER TABLE [dbo].[Models] CHECK CONSTRAINT [FK_Models_Manufacturer]
