@@ -72,25 +72,64 @@ CREATE TABLE [dbo].[Models](
 )
 )
 
-INSERT [dbo].[Manufacturers] ([ManufacturerID], [Name], [EstablishedOn]) VALUES (1, N'BMW ', CAST(N'1916-03-07T00:00:00.0000000' AS DateTime2))
+INSERT [Manufacturers] ([ManufacturerID], [Name], [EstablishedOn]) VALUES (1, N'BMW ', CAST(N'1916-03-07T00:00:00.0000000' AS DateTime2))
 
-INSERT [dbo].[Manufacturers] ([ManufacturerID], [Name], [EstablishedOn]) VALUES (2, N'Tesla ', CAST(N'2003-01-01T00:00:00.0000000' AS DateTime2))
+INSERT [Manufacturers] ([ManufacturerID], [Name], [EstablishedOn]) VALUES (2, N'Tesla ', CAST(N'2003-01-01T00:00:00.0000000' AS DateTime2))
 
-INSERT [dbo].[Manufacturers] ([ManufacturerID], [Name], [EstablishedOn]) VALUES (3, N'Lada ', CAST(N'1966-05-01T00:00:00.0000000' AS DateTime2))
+INSERT [Manufacturers] ([ManufacturerID], [Name], [EstablishedOn]) VALUES (3, N'Lada ', CAST(N'1966-05-01T00:00:00.0000000' AS DateTime2))
 
-INSERT [dbo].[Models] ([ModelID], [Name], [ManufacturerID]) VALUES (101, N'X1', 1)
+INSERT [Models] ([ModelID], [Name], [ManufacturerID]) VALUES (101, N'X1', 1)
 
-INSERT [dbo].[Models] ([ModelID], [Name], [ManufacturerID]) VALUES (102, N'i6', 1)
+INSERT [Models] ([ModelID], [Name], [ManufacturerID]) VALUES (102, N'i6', 1)
 
-INSERT [dbo].[Models] ([ModelID], [Name], [ManufacturerID]) VALUES (103, N'Model S', 2)
+INSERT [Models] ([ModelID], [Name], [ManufacturerID]) VALUES (103, N'Model S', 2)
 
-INSERT [dbo].[Models] ([ModelID], [Name], [ManufacturerID]) VALUES (104, N'Model X', 2)
+INSERT [Models] ([ModelID], [Name], [ManufacturerID]) VALUES (104, N'Model X', 2)
 
-INSERT [dbo].[Models] ([ModelID], [Name], [ManufacturerID]) VALUES (105, N'Model 3', 2)
+INSERT [Models] ([ModelID], [Name], [ManufacturerID]) VALUES (105, N'Model 3', 2)
 
-INSERT [dbo].[Models] ([ModelID], [Name], [ManufacturerID]) VALUES (106, N'Nova', 3)
+INSERT [Models] ([ModelID], [Name], [ManufacturerID]) VALUES (106, N'Nova', 3)
 
 ALTER TABLE [dbo].[Models]  WITH CHECK ADD  CONSTRAINT [FK_Models_Manufacturer] FOREIGN KEY([ManufacturerID])
 REFERENCES [dbo].[Manufacturers] ([ManufacturerID])
 
 ALTER TABLE [dbo].[Models] CHECK CONSTRAINT [FK_Models_Manufacturer]
+
+--Many-To-Many Relationships
+
+CREATE TABLE Students(
+StudentID INT PRIMARY KEY,
+Name NVARCHAR(50)
+)
+ 
+CREATE TABLE Exams(
+ExamID INT PRIMARY KEY,
+Name NVARCHAR(255)
+)
+ 
+CREATE TABLE StudentsExams(
+StudentID INT,
+ExamID INT,
+CONSTRAINT PK_StudentID_ExamID PRIMARY KEY(StudentID, ExamID),
+CONSTRAINT FK_StudentsExams_Students FOREIGN KEY(StudentID) REFERENCES Students(StudentID),
+CONSTRAINT FK_StudentsExams_ExamID FOREIGN KEY(ExamID) REFERENCES Exams(ExamID)
+)
+ 
+INSERT INTO Students VALUES
+    (1, 'Mila'),
+    (2, 'Toni'),
+    (3, 'Ron')
+ 
+INSERT INTO Exams VALUES
+    (101, 'SpringMVC'),
+    (102, 'Neo4j'),
+    (103, 'Oracle 11g')
+ 
+INSERT INTO StudentsExams VALUES
+  (1, 101), 
+  (1, 102), 
+  (2, 101), 
+  (3, 103), 
+  (2, 102), 
+  (2, 103)
+
