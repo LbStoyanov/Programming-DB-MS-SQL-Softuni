@@ -135,7 +135,8 @@ INSERT INTO StudentsExams VALUES
 
   --04. Self-Referencing
 
-  CREATE TABLE [Teachers](
+CREATE TABLE [Teachers]
+(
 [TeacherID] INT PRIMARY KEY IDENTITY (101,1) NOT NULL,
 [Name] NVARCHAR(50) NOT NULL,
 [ManagerID] INT FOREIGN KEY REFERENCES [Teachers](TeacherID)
