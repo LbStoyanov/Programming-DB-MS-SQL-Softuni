@@ -40,4 +40,23 @@ ORDER BY [Name]
 
 --07. Find Towns Not Starting With
 
+SELECT [TownID],[Name]
+FROM Towns
+WHERE [Name] NOT LIKE 'R%' AND [Name] NOT LIKE 'B%' AND [Name] NOT LIKE 'D%'
+ORDER BY [Name]
+
+ --08. Create View Employees Hired After
+
+CREATE VIEW V_EmployeesHiredAfter2000 AS
+SELECT FirstName, LastName
+FROM Employees
+WHERE (SELECT YEAR(HireDate)) > 2000
+
+--09. Length of Last Name
+
+SELECT FirstName,LastName
+FROM Employees
+WHERE LEN([LastName]) = 5
+
+--10. Rank Employees by Salary
 
