@@ -60,3 +60,5 @@ WHERE LEN([LastName]) = 5
 
 --10. Rank Employees by Salary
 
+
+
