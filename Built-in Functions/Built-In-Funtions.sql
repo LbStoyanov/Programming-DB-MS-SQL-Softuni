@@ -100,14 +100,24 @@ ORDER BY [IsoCode]
 
 --13. Mix of Peak and River Names
 
-SELECT Peaks.PeakName,
-       Rivers.RiverName,
-       LOWER(CONCAT(LEFT(Peaks.PeakName, LEN(Peaks.PeakName)-1), Rivers.RiverName)) AS Mix
-FROM Peaks
-     JOIN Rivers ON RIGHT(Peaks.PeakName, 1) = LEFT(Rivers.RiverName, 1)
-ORDER BY Mix;
+--SELECT Peaks.PeakName,
+--       Rivers.RiverName,
+--       LOWER(CONCAT(LEFT(Peaks.PeakName, LEN(Peaks.PeakName)-1), Rivers.RiverName)) AS Mix
+--FROM Peaks
+--     JOIN Rivers ON RIGHT(Peaks.PeakName, 1) = LEFT(Rivers.RiverName, 1)
+--ORDER BY Mix;
+
+SELECT  p.[PeakName],
+		r.[RiverName],
+		LOWER(CONCAT(LEFT(p.[PeakName], LEN(p.PeakName) - 1), r.[RiverName])) AS [Mix]
+	FROM [Peaks]  AS p,
+		 [Rivers] AS r
+WHERE LOWER(RIGHT(p.PeakName,1)) = LOWER(LEFT(r.RiverName,1))
+ORDER BY [Mix]
+
 
 --14. Games From 2011 and 2012 Year
+
 
 
 
