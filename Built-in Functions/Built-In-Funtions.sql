@@ -134,7 +134,18 @@ ORDER BY [Start],[Name]
 
 --15. User Email Providers
 
+SELECT	 [Username]
+		,RIGHT(Email, LEN(Email)-CHARINDEX('@', Email)) AS [Email Provider]
+FROM [Users]
+ORDER BY [Email Provider] ASC,[Username]
+
 --16. Get Users with IPAddress Like Pattern
+
+SELECT   [Username]
+    	,[IpAddress]  AS [IP Address]	 
+FROM [Users]
+WHERE [IpAddress] LIKE '___.1_%._%.___'
+ORDER BY [Username]
 
 --17. Show All Games with Duration
 
@@ -154,15 +165,6 @@ SELECT  [Name]
 	   
 FROM [Games]
 ORDER BY [Game],[Duration],[Part of the Day]
-
-
-
-
-
---18. Orders Table
-
-
-
 
 
 
