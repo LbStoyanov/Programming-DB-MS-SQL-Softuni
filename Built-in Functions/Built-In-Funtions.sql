@@ -47,7 +47,7 @@ ORDER BY [Name]
 
  --08. Create View Employees Hired After
 
-CREATE VIEW V_EmployeesHiredAfter2000 AS
+--CREATE VIEW V_EmployeesHiredAfter2000 AS
 SELECT FirstName, LastName
 FROM Employees
 WHERE (SELECT YEAR(HireDate)) > 2000
@@ -118,13 +118,19 @@ ORDER BY [Mix]
 
 --14. Games From 2011 and 2012 Year
 
-SELECT TOP(50) [Name],
-		FORMAT(CAST([Start] AS DATE),'yyyy-MM-dd') AS [Start]
+SELECT TOP(50) 
+		[Name],
+		FORMAT([Start], 'yyyy-MM-dd') AS [Start]
+		--Another format solution
+		--FORMAT(CAST([Start] AS DATE),'yyyy-MM-dd') AS [Start]
+		 
 
 FROM [Games]
 
 WHERE YEAR([Start]) IN(2011,2012)
 ORDER BY [Start],[Name]
+
+
 
 --15. User Email Providers
 
