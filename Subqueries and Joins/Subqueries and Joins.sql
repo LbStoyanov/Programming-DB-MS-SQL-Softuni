@@ -117,3 +117,92 @@ ORDER BY e.EmployeeID
 
 --06. Employees Hired After
 
+		--•	FirstName
+		--•	LastName
+		--•	HireDate
+		--•	DeptName
+	--Filter only employees hired after 1.1.1999 and are from either "Sales" or "Finance" departments, sorted by HireDate (ascending).
+
+SELECT 
+	e.FirstName,
+	e.LastName,
+	e.HireDate,
+	d.[Name] AS DeptName
+	
+	
+FROM [Employees] AS e
+LEFT JOIN [Departments] AS d ON e.DepartmentID = d.DepartmentID
+WHERE  e.HireDate > '1999.1.1' AND d.[Name] IN('Sales','Finance')
+
+ORDER BY e.HireDate
+
+--07. Employees With Project
+
+		--Create a query that selects:
+		--•	EmployeeID
+		--•	FirstName
+		--•	ProjectName
+		--Filter only employees with a project which has started after 13.08.2002 and it is still ongoing (no end date). 
+		--Return the first 5 rows sorted by EmployeeID in ascending order.
+
+
+SELECT TOP(5)
+	e.EmployeeID,
+	e.FirstName,
+	P.[Name]
+	
+FROM [Employees] AS e
+INNER JOIN [EmployeesProjects] AS ep ON e.EmployeeID = ep.EmployeeID
+INNER JOIN [Projects] AS p ON p.ProjectID = ep.ProjectID
+WHERE p.StartDate > '2002.08.13' AND p.EndDate IS NULL 
+
+ORDER BY e.EmployeeID
+
+
+--08. Employee 24
+
+		--Create a query that selects:
+		--•	EmployeeID
+		--•	FirstName
+		--•	ProjectName
+		--Filter all the projects of employee with Id 24. If the project has started during or after 2005 the returned value should be NULL.
+
+	
+SELECT
+	e.EmployeeID,
+	e.FirstName,	
+	CASE
+        WHEN DATEPART(YEAR,p.StartDate) = 2005 then 'NULL'
+        else p.Name
+        end as ProjectName
+FROM [Employees] AS e
+INNER JOIN [EmployeesProjects] AS ep ON e.EmployeeID = ep.EmployeeID
+INNER JOIN [Projects] AS p ON p.ProjectID = ep.ProjectID
+WHERE e.EmployeeID = 24
+
+ORDER BY e.EmployeeID
+	
+
+--09. Employee Manager
+
+		--Create a query that selects:
+		--•	EmployeeID
+		--•	FirstName
+		--•	ManagerID
+		--•	ManagerName
+
+		--Filter all employees with a manager who has ID equals to 3 or 7. Return all the rows, sorted by EmployeeID in ascending order.
+
+
+SELECT
+	e.EmployeeID,
+	e.FirstName,	
+	mn.EmployeeID AS ManagerID,
+	mn.FirstName AS ManagerName
+	
+FROM [Employees] AS e
+
+INNER JOIN [Employees] AS mn ON mn.EmployeeID = e.ManagerID
+WHERE e.ManagerID IN(3,7)
+
+ORDER BY e.EmployeeID
