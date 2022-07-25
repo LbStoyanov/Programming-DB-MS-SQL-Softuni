@@ -1,6 +1,12 @@
 ﻿--Joins
 
-SELECT 
-	* 
+SELECT TOP(50)
+	e.FirstName,
+	e.LastName,
+	t.[Name] AS Town,
+	a.AddressText
+
 FROM [Employees] AS e
-INNER JOIN [Departments] AS d ON e.DepartmentID = d.DepartmentID
+INNER JOIN [Addresses] AS a ON e.AddressID = a.AddressID
+INNER JOIN [Towns] AS t ON a.TownID = t.TownID
+ORDER BY e.FirstName, e.LastName
