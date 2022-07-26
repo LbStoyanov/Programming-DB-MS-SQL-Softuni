@@ -244,3 +244,46 @@ FROM (
        FROM Employees
        GROUP BY DepartmentID
      ) AS AverageSalary
+
+
+--12. Highest Peaks in Bulgaria
+
+		--Create a query that selects:
+			--•	CountryCode
+			--•	MountainRange
+			--•	PeakName
+			--•	Elevation
+		--Filter all peaks in Bulgaria with elevation over 2835. Return all the rows sorted by elevation in descending order.
+
+
+SELECT
+	mc.[CountryCode]
+	,m.[MountainRange]
+	,p.[PeakName]
+	,p.[Elevation]
+FROM [Peaks] AS p
+LEFT JOIN [Mountains] AS m ON p.[MountainId] = m.[Id]
+INNER JOIN [MountainsCountries] AS mc ON mc.[MountainId] = p.[MountainId]
+WHERE mc.CountryCode = 'BG' AND p.[Elevation] > 2835 
+ORDER BY p.[Elevation] DESC
+
+
+--13. Count Mountain Ranges
+		
+		--Create a query that selects:
+			--•	CountryCode
+			--•	MountainRanges
+			--Filter the count of the mountain ranges in the United States, Russia and Bulgaria.
+
+SELECT
+	mc.[CountryCode]
+	,COUNT(m.[MountainRange])
+	
+FROM [Mountains] AS m
+LEFT JOIN [MountainsCountries] AS mc ON m.[Id] = mc.[MountainId]
+WHERE mc.CountryCode IN ('US','BG','RU')
+GROUP BY mc.[CountryCode]
+
+
+
+
