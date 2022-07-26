@@ -285,5 +285,32 @@ WHERE mc.CountryCode IN ('US','BG','RU')
 GROUP BY mc.[CountryCode]
 
 
+--14. Countries With or Without Rivers
+
+	--Create a query that selects:
+		--•	CountryName
+		--•	RiverName
+	--Find the first 5 countries with or without rivers in Africa. Sort them by CountryName in ascending order.
+
+
+SELECT TOP(5)
+	c.[CountryName]
+	,r.[RiverName]
+	
+FROM [Countries] AS c
+LEFT JOIN [CountriesRivers] AS cr ON c.[CountryCode] = cr.[CountryCode]
+LEFT JOIN [Rivers] AS r ON r.[Id] = cr.[RiverId]
+WHERE c.[ContinentCode] = 'AF'
+ORDER BY c.[CountryName]
+
+
+--15. Continents and Currencies
+
+
+		--Create a query that selects:
+			--•	ContinentCode
+			--•	CurrencyCode
+			--•	CurrencyUsage
+		--Find all continents and their most used currency. Filter any currency that is used in only one country. Sort your results by ContinentCode.
 
 
