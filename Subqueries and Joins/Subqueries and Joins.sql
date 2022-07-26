@@ -206,3 +206,30 @@ INNER JOIN [Employees] AS mn ON mn.EmployeeID = e.ManagerID
 WHERE e.ManagerID IN(3,7)
 
 ORDER BY e.EmployeeID
+
+
+--10. Employees Summary
+
+		--Create a query that selects:
+		--•	EmployeeID
+		--•	EmployeeName
+		--•	ManagerName
+		--•	DepartmentName
+	--Show first 50 employees with their managers and the departments they are in (show the departments of the employees).
+	--Order by EmployeeID.
+
+SELECT TOP (50)
+	e.EmployeeID,
+	CONCAT(e.FirstName,' ',e.LastName) AS EmployeeName, 		
+	CONCAT(mn.FirstName, ' ',mn.LastName) AS ManagerName,
+	d.[Name] AS DepartmentName
+	
+	
+FROM [Employees] AS e
+
+LEFT JOIN [Employees] AS mn ON mn.EmployeeID = e.ManagerID
+LEFT JOIN [Departments] AS d ON e.DepartmentID = d.DepartmentID
+WHERE e.ManagerID IS NOT NULL
+
+ORDER BY e.EmployeeID
+
