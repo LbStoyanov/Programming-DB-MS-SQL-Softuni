@@ -169,12 +169,12 @@ ORDER BY e.EmployeeID
 
 	
 SELECT
-	e.EmployeeID,
-	e.FirstName,	
+	e.[EmployeeID],
+	e.[FirstName],	
 	CASE
-        WHEN DATEPART(YEAR,p.StartDate) = 2005 then 'NULL'
-        else p.Name
-        end as ProjectName
+        WHEN DATEPART(YEAR,p.StartDate) >= 2005 THEN NULL
+        ELSE p.[Name]
+        END AS [ProjectName]
 FROM [Employees] AS e
 INNER JOIN [EmployeesProjects] AS ep ON e.EmployeeID = ep.EmployeeID
 INNER JOIN [Projects] AS p ON p.ProjectID = ep.ProjectID
@@ -233,3 +233,5 @@ WHERE e.ManagerID IS NOT NULL
 
 ORDER BY e.EmployeeID
 
+
+--11. Min Average Salary
