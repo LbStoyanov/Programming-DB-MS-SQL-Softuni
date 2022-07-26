@@ -235,3 +235,12 @@ ORDER BY e.EmployeeID
 
 
 --11. Min Average Salary
+
+		--Create a query that returns the value of the lowest average salary of all departments.
+
+SELECT MIN(AVG) AS [MinAverageSalary]
+FROM (
+       SELECT AVG([Salary]) AS [avg]
+       FROM Employees
+       GROUP BY DepartmentID
+     ) AS AverageSalary
