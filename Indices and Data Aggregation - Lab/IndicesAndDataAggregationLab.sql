@@ -18,7 +18,7 @@ SELECT MAX([MagicWandSize]) AS LongestMagicWand
 
 SELECT 	
 	[DepositGroup]
-	,MAX([MagicWandSize])
+	,MAX([MagicWandSize]) AS [LongestMagicWand]
 	
 FROM [WizzardDeposits]
 GROUP BY [DepositGroup]
@@ -26,14 +26,14 @@ GROUP BY [DepositGroup]
 
 --04. Smallest Deposit Group per Magic Wand Size
 
-SELECT DepositGroup
- FROM WizzardDeposits
- GROUP BY DepositGroup
- HAVING AVG(MagicWandSize) = (
-    SELECT TOP (1) AVG(MagicWandSize)
-    FROM WizzardDeposits
-    GROUP BY DepositGroup
-    ORDER BY AVG(MagicWandSize)
+SELECT [DepositGroup]
+ FROM [WizzardDeposits]
+ GROUP BY [DepositGroup]
+ HAVING AVG([MagicWandSize]) = (
+    SELECT TOP (1) AVG([MagicWandSize])
+    FROM [WizzardDeposits]
+    GROUP BY [DepositGroup]
+    ORDER BY AVG([MagicWandSize])
  );
 
 
@@ -58,4 +58,14 @@ GROUP BY [DepositGroup]
 
 --07. Deposits Filter
 
+SELECT
+	[DepositGroup],
+	SUM([DepositAmount]) AS TotalSum
+FROM [WizzardDeposits]
+WHERE [MagicWandCreator] = 'Ollivander family'
+GROUP BY [DepositGroup]
+HAVING SUM([DepositAmount]) < 150000
+ORDER BY [TotalSum] DESC
 
+
+--
