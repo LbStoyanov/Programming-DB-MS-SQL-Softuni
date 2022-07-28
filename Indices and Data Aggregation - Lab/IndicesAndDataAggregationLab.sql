@@ -15,3 +15,25 @@ SELECT MAX([MagicWandSize]) AS LongestMagicWand
 
 --03. Longest Magic Wand per Deposit Groups
     --For wizards in each deposit group show the longest magic wand. Rename the new column appropriately.
+
+SELECT 	
+	[DepositGroup]
+	,MAX([MagicWandSize])
+	
+FROM [WizzardDeposits]
+GROUP BY [DepositGroup]
+
+
+--04. Smallest Deposit Group per Magic Wand Size
+
+SELECT DepositGroup
+FROM WizzardDeposits
+GROUP BY [DepositGroup]
+HAVING AVG(MagicWandSize) <
+			(
+			    SELECT AVG(MagicWandSize) FROM WizzardDeposits
+			)
+
+
+
+--05. Deposits Sum
