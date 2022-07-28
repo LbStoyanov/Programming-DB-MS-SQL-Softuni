@@ -27,13 +27,35 @@ GROUP BY [DepositGroup]
 --04. Smallest Deposit Group per Magic Wand Size
 
 SELECT DepositGroup
-FROM WizzardDeposits
-GROUP BY [DepositGroup]
-HAVING AVG(MagicWandSize) <
-			(
-			    SELECT AVG(MagicWandSize) FROM WizzardDeposits
-			)
-
+ FROM WizzardDeposits
+ GROUP BY DepositGroup
+ HAVING AVG(MagicWandSize) = (
+    SELECT TOP (1) AVG(MagicWandSize)
+    FROM WizzardDeposits
+    GROUP BY DepositGroup
+    ORDER BY AVG(MagicWandSize)
+ );
 
 
 --05. Deposits Sum
+
+SELECT DISTINCT
+	[DepositGroup]
+	,SUM([DepositAmount]) AS TotalSum
+FROM [WizzardDeposits]
+GROUP BY [DepositGroup]
+
+
+--06. Deposits Sum for Ollivander Family
+
+SELECT DISTINCT
+	[DepositGroup]
+	,SUM([DepositAmount]) AS TotalSum
+FROM [WizzardDeposits]
+WHERE [MagicWandCreator] = 'Ollivander family'
+GROUP BY [DepositGroup]
+
+
+--07. Deposits Filter
+
+
