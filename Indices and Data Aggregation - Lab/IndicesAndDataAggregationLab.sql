@@ -70,6 +70,25 @@ ORDER BY [TotalSum] DESC
 
 --08. Deposit Charge
 
+	--Create a query that selects:
+		--•	Deposit group  
+		--•	Magic wand creator
+		--•	Minimum deposit charge for each group 
+		--Select the data in ascending ordered by MagicWandCreator and DepositGroup.
+
+SELECT
+	 [DepositGroup]
+	,[MagicWandCreator]
+	,MIN([DepositCharge]) AS MinDepositCharge
+
+FROM [WizzardDeposits]
+GROUP BY 
+		  [DepositGroup]
+		 ,[MagicWandCreator]
+ORDER BY 
+		  [MagicWandCreator]
+		 ,[DepositGroup]
+
 --09. Age Group
 
 SELECT 
