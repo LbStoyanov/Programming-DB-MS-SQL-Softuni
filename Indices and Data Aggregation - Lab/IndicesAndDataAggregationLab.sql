@@ -126,4 +126,45 @@ SELECT
 	ORDER BY [FirstLetter]
 
 
+--11. Average Interest
+	--Mr. Bodrog is highly interested in profitability. He wants to know the average interest of all deposit groups split by 
+	--whether the deposit has expired or not. But that’s not all. He wants you to select deposits with start date after 
+	--01/01/1985. Order the data descending by Deposit Group and ascending by Expiration Flag.
+
+
+SELECT
+	[DepositGroup],
+	[IsDepositExpired],
+	AVG([DepositInterest]) AS AverageInterest
+FROM [WizzardDeposits]
+WHERE [DepositStartDate] > '1.1.1985'
+GROUP BY [DepositGroup]
+		 ,[IsDepositExpired]	
+ORDER BY 
+		 [DepositGroup] DESC
+		,[IsDepositExpired] 
+	
+--12. Rich Wizard, Poor Wizard
+
+	--Mr. Bodrog definitely likes his werewolves more than you. This is your last chance to survive! Give him some data to 
+	--play his favorite game Rich Wizard, Poor Wizard. The rules are simple: You compare the deposits of every wizard with 
+	--the wizard after him. If a wizard is the last one in the database, simply ignore it. In the end you have to sum the 
+	--difference between the deposits.
+	--At the end your query should return a single value: the SUM of all differences.
+
+
+SELECT
+	SUM([Difference]) AS [SumDifference]
+FROM (
+		SELECT
+			[FirstName] AS [Host Wizard]
+			,[DepositAmount] AS [Host Wizard Deposit]
+			,LEAD([FirstName]) OVER(ORDER BY [Id]) AS [Guest Wizard]
+			,LEAD([DepositAmount]) OVER(ORDER BY [Id]) AS [Guest Wizard Deposit]
+			,[DepositAmount] - LEAD([DepositAmount]) OVER(ORDER BY [Id]) AS [Difference]
+		FROM [WizzardDeposits]
+	) AS [DifferenceSubqueary]
+
+
+
 
