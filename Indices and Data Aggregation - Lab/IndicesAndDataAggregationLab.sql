@@ -167,4 +167,4 @@ FROM (
 
 
 
-
+--13. Departments Total Salaries
