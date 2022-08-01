@@ -6,13 +6,13 @@
 
 CREATE PROCEDURE usp_GetEmployeesSalaryAbove35000
 AS
-
-		SELECT 
-		e.[FirstName],
-		e.[LastName]
-	FROM [Employees] AS e
-	
-	WHERE E.[Salary] > 35000
+BEGIN
+	SELECT	
+	   	  [FirstName]
+		 ,[LastName] 
+	FROM  [Employees]
+	WHERE [Salary] > 35000
+END
 --EXEC usp_GetEmployeesSalaryAbove35000
 
 --02. Employees with Salary Above Number
