@@ -34,4 +34,21 @@ END
 
 --03. Town Names Starting With
 
-		
+		--Create a stored procedure usp_GetTownsStartingWith that accept string as parameter and returns all town names starting with that string. 
+
+CREATE PROCEDURE usp_GetTownsStartingWith @townName NVARCHAR (50)
+AS
+BEGIN
+	
+	DECLARE @stringCount int = LEN(@townName)
+	SELECT [Name] FROM [Towns]
+	WHERE LEFT([Name],@stringCount) = @townName
+END
+
+
+--04. Employees from Town
+
+  --Create a stored procedure usp_GetEmployeesFromTown that accepts town name as parameter and return the employees’ first and last name 
+  --that live in the given town. 
+
+
