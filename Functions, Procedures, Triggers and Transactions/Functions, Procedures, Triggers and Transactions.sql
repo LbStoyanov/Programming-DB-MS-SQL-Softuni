@@ -52,3 +52,23 @@ END
   --that live in the given town. 
 
 
+CREATE PROCEDURE usp_GetEmployeesFromTown @townName VARCHAR (50)
+AS
+BEGIN
+	SELECT
+		e.[FirstName],
+		e.[LastName]
+	FROM [Employees] AS e
+	LEFT JOIN [Addresses] AS a ON e.[AddressID] = a.[AddressID]
+	LEFT JOIN [Towns] AS t ON a.[TownID] = t.[TownID]
+	WHERE t.[Name] = @townName
+	
+END
+
+
+--05. Salary Level Function
+
+	--Create a function ufn_GetSalaryLevel(@salary DECIMAL(18,4)) that receives salary of an employee and returns the level of the salary.
+	--•	If salary is < 30000 return "Low"
+	--•	If salary is between 30000 and 50000 (inclusive) return "Average"
+	--•	If salary is > 50000 return "High"
