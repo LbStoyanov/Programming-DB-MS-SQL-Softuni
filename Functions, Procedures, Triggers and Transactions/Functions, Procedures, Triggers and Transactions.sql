@@ -188,3 +188,30 @@ BEGIN
 	FROM [Employees]
 	WHERE [DepartmentID] = @departmentId
 END
+
+--13. *Cash in User Games Odd Rows
+
+	--Create a function ufn_CashInUsersGames that sums the cash of odd rows. 
+	--Rows must be ordered by cash in descending order.
+	--The function should take a game name as a parameter and return the result as a table. 
+	--Submit only your function in.
+
+
+CREATE FUNCTION ufn_CashInUsersGames (@gameName VARCHAR(50))
+RETURNS TABLE
+AS
+RETURN SELECT(
+
+	SELECT 
+		SUM([Cash]) AS [SumCahs] 
+	FROM (
+				SELECT
+					g.[Name],
+					ug.[Cash],
+					ROW_NUMBER() OVER(PARTITION BY g.[Name] ORDER BY ug.[Cash] DESC) AS [RowNumber]
+				FROM [UsersGames] AS ug
+				INNER JOIN [Games] AS g ON ug.[GameId] = g.[id]
+				WHERE g.[Name] = @gameName
+		 ) AS [RowNumberSubQuery]
+WHERE [RowNumber] % 2 <> 0	
+			) AS [SumCash]
