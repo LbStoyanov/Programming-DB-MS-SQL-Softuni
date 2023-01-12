@@ -1,8 +1,21 @@
 CREATE DATABASE Minions
 
-USE [Minions]
+--USE [Minions]
+
 CREATE TABLE Minions(
-	Id INT,
+	Id INT NOT NULL,
+	[Name] VARCHAR(100),
+	Age INT
+)
+
+--ALTER TABLE Minions
+--ALTER COLUMN Id INT NOT NULL
+
+--ADD CONSTRAINT PK_Id PRIMARY KEY (Id)
+	
+
+CREATE TABLE Towns(
+	 Id INT PRIMARY KEY,
 	[Name] VARCHAR(100),
 	Age INT
 )
