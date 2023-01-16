@@ -15,19 +15,27 @@ SELECT [FirstName], [MiddleName], [LastName]
   FROM Employees
 
 --06.
-
 SELECT CONCAT(FirstName, '.', LastName, '@' ,'softuni.bg')
     AS [Full Email Address]
   FROM Employees
   
 
 --07.
-
 SELECT DISTINCT [Salary]
            FROM [Employees]
+
+--08
   
 --09.
+
+SELECT [FirstName], [LastName], [JobTitle]
+           FROM [Employees]
+		  WHERE [Salary] BETWEEN 20000 AND 30000
+  
+
 --010.
+
+
 --011.
 --012.
 --013.
