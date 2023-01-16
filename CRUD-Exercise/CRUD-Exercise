@@ -10,3 +10,39 @@ SELECT [Name]
 SELECT [FirstName], [LastName], [Salary]
   FROM Employees
 
+--05.
+SELECT [FirstName], [MiddleName], [LastName]
+  FROM Employees
+
+--06.
+
+SELECT CONCAT(FirstName, '.', LastName, '@' ,'softuni.bg')
+    AS [Full Email Address]
+  FROM Employees
+  
+
+--07.
+
+
+--09.
+--010.
+--011.
+--012.
+--013.
+--014.
+--015.
+--016.
+--017.
+--018.
+--019.
+--020.
+--021.
+--022.
+--023.
+--024.
+--025.
+--026.
+
+
+
+
