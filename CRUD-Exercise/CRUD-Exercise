@@ -23,7 +23,9 @@ SELECT CONCAT(FirstName, '.', LastName, '@' ,'softuni.bg')
 
 --07.
 
-
+SELECT DISTINCT [Salary]
+           FROM [Employees]
+  
 --09.
 --010.
 --011.
