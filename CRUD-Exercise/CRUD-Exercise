@@ -41,10 +41,19 @@ SELECT CONCAT(FirstName, ' ', MiddleName, ' ', LastName)
   
 
 --011.
-
+SELECT FirstName, LastName
+  FROM Employees
+ WHERE ManagerID IS NULL
 
 --012.
+
+
 --013.
+  SELECT TOP 5 FirstName, LastName
+    FROM Employees
+ORDER BY Salary DESC
+
+
 --014.
 --015.
 --016.
