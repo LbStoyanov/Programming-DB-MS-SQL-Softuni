@@ -1,0 +1,10 @@
+--02.
+SELECT * 
+  FROM Departments
+
+--03.
+SELECT [Name] 
+  FROM Departments
+
+--04.
+
