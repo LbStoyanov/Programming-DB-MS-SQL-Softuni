@@ -56,8 +56,15 @@ ORDER BY Salary DESC
 
 --014.
 --015.
+  SELECT *
+    FROM Employees
+ORDER BY Salary DESC,
+		FirstName ASC,
+		LastName DESC,
+		MiddleName
 --016.
 --017.
+
 --018.
 --019.
 --020.
@@ -65,6 +72,15 @@ ORDER BY Salary DESC
 --022.
 --023.
 --024.
+SELECT  CountryName,
+		CountryCode,
+		CASE CurrencyCode
+			 WHEN 'EUR' THEN 'Euro'
+			 ELSE 'Not Euro'
+		END
+		AS Currency
+		FROM Countries
+		ORDER BY CountryName
 --025.
 --026.
 
