@@ -3,6 +3,8 @@
 SELECT FirstName,LastName
 FROM Employees
 WHERE FirstName LIKE 'Sa%'--Starts With
+--Another solution: WHERE LEFT(FirstName, 2) = 'Sa'
+
 
 --02. Find Names of All Employees by Last Name
 
