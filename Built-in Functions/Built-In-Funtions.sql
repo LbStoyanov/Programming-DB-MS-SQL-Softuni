@@ -27,6 +27,7 @@ WHERE DepartmentID IN(3,10)
 SELECT FirstName,LastName
 FROM Employees
 WHERE JobTitle NOT LIKE '%engineer%'
+--Another Solution:WHERE CHARINDEX('engineer', JobTitle) = 0
 
 --05. Find Towns with Name Length
 
