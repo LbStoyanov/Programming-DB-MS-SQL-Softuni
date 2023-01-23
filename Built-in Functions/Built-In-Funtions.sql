@@ -11,14 +11,16 @@ WHERE FirstName LIKE 'Sa%'--Starts With
 SELECT FirstName,LastName
 FROM Employees
 WHERE LastName LIKE '%ei%' --Contains
+--Another solution: WHERE CHARINDEX('ei',LastName) > 0
 
---03. Find First Names of All Employess
+--03. Find First Name of All Employess
 
 SELECT FirstName
 FROM Employees
 WHERE DepartmentID IN(3,10) 
 		AND (SELECT YEAR(HireDate)) >= 1995
 			AND(SELECT YEAR(HireDate)) <= 2005
+--Another solution: AND YEAR(HireDate) BETWEEN 1995 AND 2005
 
 --04. Find All Employees Except Engineers
 
