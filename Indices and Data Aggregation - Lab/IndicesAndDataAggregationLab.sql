@@ -184,15 +184,16 @@ WHERE SalaryRank = 3
 
 --19
 
-SELECT FirstName, LastName, DepartmentID, Salary
+SELECT TOP(10) FirstName, LastName, DepartmentID
 FROM Employees AS eMain
 WHERE Salary > 
 (
 	SELECT  AVG(Salary) AS AverageSalary
 	FROM Employees
 	AS eSub
-	WHERE DepartmentID = 7
+	WHERE eSub.DepartmentID = eMain.DepartmentID
 	GROUP BY DepartmentID
-) AS
+) 
+ORDER BY eMain.DepartmentId
 
 
