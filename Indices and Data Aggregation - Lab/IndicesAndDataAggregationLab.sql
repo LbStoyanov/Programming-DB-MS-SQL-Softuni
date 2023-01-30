@@ -168,3 +168,16 @@ FROM (
 
 
 --13. Departments Total Salaries
+
+
+--18*
+
+SELECT DISTINCT DepartmentId, Salary AS ThirdHighestSalary 
+FROM 
+(
+	SELECT DepartmentId, Salary,
+	DENSE_RANK() OVER(PARTITION BY DepartmentId ORDER BY Salary DESC) 
+	AS SalaryRank
+	FROM Employees
+) AS SalaryRankQuery
+WHERE SalaryRank = 3
