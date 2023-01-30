@@ -181,3 +181,18 @@ FROM
 	FROM Employees
 ) AS SalaryRankQuery
 WHERE SalaryRank = 3
+
+--19
+
+SELECT FirstName, LastName, DepartmentID, Salary
+FROM Employees AS eMain
+WHERE Salary > 
+(
+	SELECT  AVG(Salary) AS AverageSalary
+	FROM Employees
+	AS eSub
+	WHERE DepartmentID = 7
+	GROUP BY DepartmentID
+) AS
+
+
