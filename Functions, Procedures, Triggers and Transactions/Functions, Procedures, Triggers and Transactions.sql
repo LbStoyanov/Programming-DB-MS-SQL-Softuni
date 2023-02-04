@@ -20,15 +20,15 @@ END
 	--Create a stored procedure usp_GetEmployeesSalaryAboveNumber that accept a number (of type DECIMAL(18,4)) as 
 	--parameter and returns all employees’ first and last names whose salary is above or equal to the given number. 
 
-CREATE PROCEDURE usp_GetEmployeesSalaryAboveNumber  @minSalary DECIMAL(18, 4)
-AS
-BEGIN
-	SELECT	
-	   	  [FirstName]
-		 ,[LastName] 
-	FROM  [Employees]
-	WHERE [Salary] >= @minSalary
-END
+--CREATE PROCEDURE usp_GetEmployeesSalaryAboveNumber  @minSalary DECIMAL(18, 4)
+--AS
+--BEGIN
+--	SELECT	
+--	   	  [FirstName]
+--		 ,[LastName] 
+--	FROM  [Employees]
+--	WHERE [Salary] >= @minSalary
+--END
 
 
 
@@ -36,14 +36,14 @@ END
 
 		--Create a stored procedure usp_GetTownsStartingWith that accept string as parameter and returns all town names starting with that string. 
 
-CREATE PROCEDURE usp_GetTownsStartingWith @townName NVARCHAR (50)
-AS
-BEGIN
+--CREATE PROCEDURE usp_GetTownsStartingWith @townName NVARCHAR (50)
+--AS
+--BEGIN
 	
-	DECLARE @stringCount int = LEN(@townName)
-	SELECT [Name] FROM [Towns]
-	WHERE LEFT([Name],@stringCount) = @townName
-END
+--	DECLARE @stringCount int = LEN(@townName)
+--	SELECT [Name] FROM [Towns]
+--	WHERE LEFT([Name],@stringCount) = @townName
+--END
 
 
 --04. Employees from Town
@@ -52,18 +52,18 @@ END
   --that live in the given town. 
 
 
-CREATE PROCEDURE usp_GetEmployeesFromTown @townName VARCHAR (50)
-AS
-BEGIN
-	SELECT
-		e.[FirstName],
-		e.[LastName]
-	FROM [Employees] AS e
-	LEFT JOIN [Addresses] AS a ON e.[AddressID] = a.[AddressID]
-	LEFT JOIN [Towns] AS t ON a.[TownID] = t.[TownID]
-	WHERE t.[Name] = @townName
+--CREATE PROCEDURE usp_GetEmployeesFromTown @townName VARCHAR (50)
+--AS
+--BEGIN
+--	SELECT
+--		e.[FirstName],
+--		e.[LastName]
+--	FROM [Employees] AS e
+--	LEFT JOIN [Addresses] AS a ON e.[AddressID] = a.[AddressID]
+--	LEFT JOIN [Towns] AS t ON a.[TownID] = t.[TownID]
+--	WHERE t.[Name] = @townName
 	
-END
+--END
 
 
 --05. Salary Level Function
@@ -74,27 +74,27 @@ END
 	--•	If salary is > 50000 return "High"
 
 
-CREATE FUNCTION ufn_GetSalaryLevel (@salary DECIMAL(18 , 4))
-RETURNS VARCHAR(7)
-AS
-BEGIN
-	DECLARE @salaryLevel VARCHAR(7)
+--CREATE FUNCTION ufn_GetSalaryLevel (@salary DECIMAL(18 , 4))
+--RETURNS VARCHAR(7)
+--AS
+--BEGIN
+--	DECLARE @salaryLevel VARCHAR(7)
 
-	IF @salary < 30000
-	BEGIN
-		SET @salaryLevel = 'Low'
-	END
-	ELSE IF @salary BETWEEN 30000 AND 50000
-	BEGIN
-		SET @salaryLevel = 'Average'
-	END
-	ELSE
-	BEGIN
-		SET @salaryLevel = 'High'
-	END
+--	IF @salary < 30000
+--	BEGIN
+--		SET @salaryLevel = 'Low'
+--	END
+--	ELSE IF @salary BETWEEN 30000 AND 50000
+--	BEGIN
+--		SET @salaryLevel = 'Average'
+--	END
+--	ELSE
+--	BEGIN
+--		SET @salaryLevel = 'High'
+--	END
 
-	RETURN @salaryLevel
-END
+--	RETURN @salaryLevel
+--END
 
 
 --06. Employees by Salary Level
@@ -105,40 +105,40 @@ END
 	--which was part of the previous task, inside your "CREATE PROCEDURE …" query.
 	
 
-CREATE PROCEDURE usp_EmployeesBySalaryLevel @salaryLevel VARCHAR(7)
-AS
-BEGIN
-	SELECT
-		[FirstName],
-		[LastName]
-	FROM [Employees] AS e
-	WHERE dbo.ufn_GetSalaryLevel(e.[Salary]) = @salaryLevel
+--CREATE PROCEDURE usp_EmployeesBySalaryLevel @salaryLevel VARCHAR(7)
+--AS
+--BEGIN
+--	SELECT
+--		[FirstName],
+--		[LastName]
+--	FROM [Employees] AS e
+--	WHERE dbo.ufn_GetSalaryLevel(e.[Salary]) = @salaryLevel
 
-END
+--END
 
 --07. Define Function
 
 	--Define a function ufn_IsWordComprised(@setOfLetters, @word) 
 	--that returns true or false depending on that if the word is comprised of the given set of letters. 
 
-CREATE FUNCTION ufn_IsWordComprised(@setOfLetters VARCHAR (50), @word VARCHAR (50)) 
-RETURNS BIT
-AS
-BEGIN
-     DECLARE @index INT = 1
-     DECLARE @length INT = LEN(@word)
-     DECLARE @letter CHAR(1)
+--CREATE FUNCTION ufn_IsWordComprised(@setOfLetters VARCHAR (50), @word VARCHAR (50)) 
+--RETURNS BIT
+--AS
+--BEGIN
+--     DECLARE @index INT = 1
+--     DECLARE @length INT = LEN(@word)
+--     DECLARE @letter CHAR(1)
 
-     WHILE (@index <= @length)
-     BEGIN
-          SET @letter = SUBSTRING(@word, @index, 1)
-          IF (CHARINDEX(@letter, @setOfLetters) > 0)
-             SET @index = @index + 1
-          ELSE
-             RETURN 0
-     END
-     RETURN 1
-END 
+--     WHILE (@index <= @length)
+--     BEGIN
+--          SET @letter = SUBSTRING(@word, @index, 1)
+--          IF (CHARINDEX(@letter, @setOfLetters) > 0)
+--             SET @index = @index + 1
+--          ELSE
+--             RETURN 0
+--     END
+--     RETURN 1
+--END 
 
 
 --08.Delete Employees and Departments
@@ -148,46 +148,46 @@ END
 	--Finally, SELECT the number of employees from the given department. If the delete statements are correct the select query should return 0.
 	--After completing that exercise restore your database to revert all changes.
 	
-	CREATE PROCEDURE usp_DeleteEmployeesFromDepartment (@departmentId INT) 
-AS
-BEGIN
-	DELETE FROM [EmployeesProjects]
-	WHERE [EmployeeID] IN (
-								SELECT [EmployeeID]
-								FROM [Employees]
-								WHERE [DepartmentID] = @departmentId
-						  )	
+--	CREATE PROCEDURE usp_DeleteEmployeesFromDepartment (@departmentId INT) 
+--AS
+--BEGIN
+--	DELETE FROM [EmployeesProjects]
+--	WHERE [EmployeeID] IN (
+--								SELECT [EmployeeID]
+--								FROM [Employees]
+--								WHERE [DepartmentID] = @departmentId
+--						  )	
 
-	UPDATE [Employees]
-	SET [ManagerID] = NULL
-	WHERE [ManagerID] IN (
-								SELECT [EmployeeID]
-								FROM [Employees]
-								WHERE [DepartmentID] = @departmentId
-						 )	
+--	UPDATE [Employees]
+--	SET [ManagerID] = NULL
+--	WHERE [ManagerID] IN (
+--								SELECT [EmployeeID]
+--								FROM [Employees]
+--								WHERE [DepartmentID] = @departmentId
+--						 )	
 
-	ALTER TABLE [Departments]
-	ALTER COLUMN [ManagerID] INT
+--	ALTER TABLE [Departments]
+--	ALTER COLUMN [ManagerID] INT
 	
-	UPDATE [Departments]
-	SET [ManagerID] = NULL
-	WHERE [ManagerID] IN (
-								SELECT [EmployeeID]
-								FROM [Employees]
-								WHERE [DepartmentID] = @departmentId
-						 )
+--	UPDATE [Departments]
+--	SET [ManagerID] = NULL
+--	WHERE [ManagerID] IN (
+--								SELECT [EmployeeID]
+--								FROM [Employees]
+--								WHERE [DepartmentID] = @departmentId
+--						 )
 
-	DELETE FROM [Employees]
-	WHERE [DepartmentID] = @departmentId
+--	DELETE FROM [Employees]
+--	WHERE [DepartmentID] = @departmentId
 
-	DELETE FROM [Departments]
-	WHERE[DepartmentID] = @departmentId
+--	DELETE FROM [Departments]
+--	WHERE[DepartmentID] = @departmentId
 
-	SELECT
-		COUNT(*)
-	FROM [Employees]
-	WHERE [DepartmentID] = @departmentId
-END
+--	SELECT
+--		COUNT(*)
+--	FROM [Employees]
+--	WHERE [DepartmentID] = @departmentId
+--END
 
 --13. *Cash in User Games Odd Rows
 
@@ -197,21 +197,21 @@ END
 	--Submit only your function in.
 
 
-CREATE FUNCTION ufn_CashInUsersGames (@gameName VARCHAR(50))
-RETURNS TABLE
-AS
-RETURN SELECT(
+--CREATE FUNCTION ufn_CashInUsersGames (@gameName VARCHAR(50))
+--RETURNS TABLE
+--AS
+--RETURN SELECT(
 
-	SELECT 
-		SUM([Cash]) AS [SumCahs] 
-	FROM (
-				SELECT
-					g.[Name],
-					ug.[Cash],
-					ROW_NUMBER() OVER(PARTITION BY g.[Name] ORDER BY ug.[Cash] DESC) AS [RowNumber]
-				FROM [UsersGames] AS ug
-				INNER JOIN [Games] AS g ON ug.[GameId] = g.[id]
-				WHERE g.[Name] = @gameName
-		 ) AS [RowNumberSubQuery]
-WHERE [RowNumber] % 2 <> 0	
-			) AS [SumCash]
+--	SELECT 
+--		SUM([Cash]) AS [SumCahs] 
+--	FROM (
+--				SELECT
+--					g.[Name],
+--					ug.[Cash],
+--					ROW_NUMBER() OVER(PARTITION BY g.[Name] ORDER BY ug.[Cash] DESC) AS [RowNumber]
+--				FROM [UsersGames] AS ug
+--				INNER JOIN [Games] AS g ON ug.[GameId] = g.[id]
+--				WHERE g.[Name] = @gameName
+--		 ) AS [RowNumberSubQuery]
+--WHERE [RowNumber] % 2 <> 0	
+--			) AS [SumCash]
