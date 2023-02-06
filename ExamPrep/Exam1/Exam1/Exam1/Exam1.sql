@@ -45,3 +45,29 @@ CREATE TABLE Animals
 	OwnerId INT FOREIGN KEY REFERENCES Owners (Id),
 	AnimalTypeId INT FOREIGN KEY REFERENCES AnymalTypes (Id) NOT NULL,
 )
+
+
+CREATE TABLE AnimalCages
+(
+	CageId INT FOREIGN KEY REFERENCES Cafes(Id),
+	AnimalId INT FOREIGN KEY REFERENCES Animals(Id),
+	PRIMARY KEY(CageId, AnimalId)
+)
+
+CREATE TABLE VolunteersDepartments
+(
+	Id INT PRIMARY KEY IDENTITY,
+	DepartmentName VARCHAR(30) NOT NULL,
+)
+
+CREATE TABLE Volunteers
+(
+	Id INT PRIMARY KEY IDENTITY,
+	Name VARCHAR(50) NOT NULL,
+	PhoneNumber VARCHAR(15) NOT NULL,
+	Address VARCHAR(50),
+	AnimalId INT FOREIGN KEY REFERENCES Animals(Id),
+	DepartmentId INT FOREIGN KEY REFERENCES VolunteersDepartments(Id)
+)
+
+
