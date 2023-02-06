@@ -34,7 +34,7 @@ CREATE TABLE Animals
 	Name VARCHAR(30) NOT NULL,
 	BirthDate DATE NOT NULL,
 	OwnerId INT FOREIGN KEY REFERENCES Owners (Id),
-	AnimalTypeId INT FOREIGN KEY REFERENCES AnymalTypes (Id) NOT NULL,
+	AnimalTypeId INT FOREIGN KEY REFERENCES AnimalTypes (Id) NOT NULL,
 )
 
 CREATE TABLE Animals
@@ -43,7 +43,7 @@ CREATE TABLE Animals
 	Name VARCHAR(30) NOT NULL,
 	BirthDate DATE NOT NULL,
 	OwnerId INT FOREIGN KEY REFERENCES Owners (Id),
-	AnimalTypeId INT FOREIGN KEY REFERENCES AnymalTypes (Id) NOT NULL,
+	AnimalTypeId INT FOREIGN KEY REFERENCES AnimalTypes (Id) NOT NULL,
 )
 
 
@@ -70,4 +70,15 @@ CREATE TABLE Volunteers
 	DepartmentId INT FOREIGN KEY REFERENCES VolunteersDepartments(Id)
 )
 
+
+
+--Task 02.
+
+INSERT INTO Animals
+([Name],BirthDate,OwnerId,AnimalTypeId)
+VALUES
+('Giraffe', '2018-09-21', 21, 1),
+('Harpy Eagle', '2018-09-21', 15, 3),
+('Giraffe', '2018-09-21', 21, 1),
+('Giraffe', '2018-09-21', 21, 1)
 
