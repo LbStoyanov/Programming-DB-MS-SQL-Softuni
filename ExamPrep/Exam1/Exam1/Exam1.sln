@@ -5,6 +5,8 @@ VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Exam1", "Exam1\Exam1.sqlproj", "{815A5159-62D0-4ACD-863A-4E7835AB0290}"
 EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Exam2", "..\..\Exam2\Exam2.sqlproj", "{AD157F62-5748-48CC-AB1E-EB403A32640C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,6 +19,12 @@ Global
 		{815A5159-62D0-4ACD-863A-4E7835AB0290}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{815A5159-62D0-4ACD-863A-4E7835AB0290}.Release|Any CPU.Build.0 = Release|Any CPU
 		{815A5159-62D0-4ACD-863A-4E7835AB0290}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{AD157F62-5748-48CC-AB1E-EB403A32640C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD157F62-5748-48CC-AB1E-EB403A32640C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD157F62-5748-48CC-AB1E-EB403A32640C}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{AD157F62-5748-48CC-AB1E-EB403A32640C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD157F62-5748-48CC-AB1E-EB403A32640C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD157F62-5748-48CC-AB1E-EB403A32640C}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

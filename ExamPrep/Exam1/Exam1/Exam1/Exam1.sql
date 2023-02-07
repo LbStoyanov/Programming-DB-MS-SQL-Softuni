@@ -75,10 +75,10 @@ CREATE TABLE Volunteers
 --Task 02.
 
 INSERT INTO Animals
-([Name],BirthDate,OwnerId,AnimalTypeId)
+([Name],BirthDate,OwnerId,AnimalTypeId
 VALUES
 ('Giraffe', '2018-09-21', 21, 1),
 ('Harpy Eagle', '2018-09-21', 15, 3),
 ('Giraffe', '2018-09-21', 21, 1),
-('Giraffe', '2018-09-21', 21, 1)
+('Giraffe', '2018-09-21', 21, 1),
 
