@@ -6,7 +6,7 @@ GO
 
 GO
 
---Task 01.
+--Task 01.- DDL
 CREATE TABLE Owners
 (
 	Id INT PRIMARY KEY IDENTITY,
@@ -61,7 +61,7 @@ CREATE TABLE Volunteers
 
 
 
---Task 02.
+--Task 02.-INSERT
 
 INSERT INTO Animals ([Name], BirthDate, OwnerId, AnimalTypeId)
 VALUES
@@ -78,4 +78,12 @@ VALUES
 ('Kalina Evtimova', '0896321112','Silistra, 21 Breza str.', 9, 7),
 ('Stoyan Tomov', '0898564100','Montana, 1 Bor str.', 18, 8),
 ('Boryana Mileva', '0888112233',NULL, 31, 5);
+
+
+--Task 03-UPDATE
+
+UPDATE Animals
+SET OwnerId = (SELECT Id FROM Owners WHERE [Name] = 'Kaloqn Stoqnov')
+WHERE OwnerId IS NULL;
+
 
