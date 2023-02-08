@@ -105,3 +105,15 @@ LEFT JOIN AnimalTypes AS at
 ON a.AnimalTypeId = at.Id
 ORDER BY [Name] ASC;
 
+--Task 07-Owners and Their Animals
+SELECT TOP(5) o.[Name] AS [Owner], COUNT(a.Id) AS CountOfAnimals
+FROM Owners AS o
+LEFT JOIN Animals AS a ON o.Id = a.OwnerId
+GROUP BY o.[Name]
+ORDER BY CountOfAnimals DESC, [Owner]
+
+--Task 08-Owners, Animals and Cages
+
+
+
+
