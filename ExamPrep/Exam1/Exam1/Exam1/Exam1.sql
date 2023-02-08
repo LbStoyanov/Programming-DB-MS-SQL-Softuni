@@ -122,5 +122,5 @@ LEFT JOIN AnimalsCages AS ac ON a.Id = ac.AnimalId
 WHERE [at].AnimalType = 'Mammals'
 ORDER BY o.[Name], a.[Name] DESC
 
-
+--TASK 09 - Volunteers in Sofia
 
