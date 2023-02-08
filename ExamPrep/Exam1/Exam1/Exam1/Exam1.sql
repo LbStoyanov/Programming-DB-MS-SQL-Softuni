@@ -99,5 +99,9 @@ ORDER BY [Name],AnimalId DESC
 
 --Task 06-Animals Data
 
-
+SELECT [Name], AnimalType, FORMAT(BirthDate,'dd.MM.yyyy') AS BirthDate
+FROM Animals AS a
+LEFT JOIN AnimalTypes AS at
+ON a.AnimalTypeId = at.Id
+ORDER BY [Name] ASC;
 
