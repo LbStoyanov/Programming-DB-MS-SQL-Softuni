@@ -114,6 +114,13 @@ ORDER BY CountOfAnimals DESC, [Owner]
 
 --Task 08-Owners, Animals and Cages
 
+SELECT CONCAT(o.[Name],'-', a.[Name]) AS OwnersAnimals, o.PhoneNumber, ac.CageId
+FROM Owners AS o
+INNER JOIN Animals AS a ON o.Id = a.OwnerId
+INNER JOIN AnimalTypes AS [at] ON a.AnimalTypeId = at.Id
+LEFT JOIN AnimalsCages AS ac ON a.Id = ac.AnimalId
+WHERE [at].AnimalType = 'Mammals'
+ORDER BY o.[Name], a.[Name] DESC
 
 
 
