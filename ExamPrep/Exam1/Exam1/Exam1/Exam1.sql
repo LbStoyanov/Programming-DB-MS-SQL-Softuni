@@ -86,4 +86,13 @@ UPDATE Animals
 SET OwnerId = (SELECT Id FROM Owners WHERE [Name] = 'Kaloqn Stoqnov')
 WHERE OwnerId IS NULL;
 
+--Task 04-DELETE
+
+DELETE FROM Volunteers WHERE DepartmentId = 2
+
+DELETE FROM VolunteersDepartments WHERE DepartmentName = 'Education program assistant';
+
+--Task 05-Querying Volunteers
+
+
 
