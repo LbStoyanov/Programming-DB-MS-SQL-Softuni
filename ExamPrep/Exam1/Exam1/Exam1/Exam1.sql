@@ -92,7 +92,12 @@ DELETE FROM Volunteers WHERE DepartmentId = 2
 
 DELETE FROM VolunteersDepartments WHERE DepartmentName = 'Education program assistant';
 
---Task 05-Querying Volunteers
+--Task 05-Querying: Volunteers
+SELECT  [Name], PhoneNumber,[Address], AnimalId, DepartmentId
+FROM Volunteers
+ORDER BY [Name],AnimalId DESC
+
+--Task 06-Animals Data
 
 
 
