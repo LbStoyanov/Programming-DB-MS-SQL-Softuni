@@ -134,4 +134,17 @@ WHERE vd.DepartmentName = 'Education program assistant'
 AND v.[Address] LIKE '%Sofia%'
 ORDER BY v.[Name]
 
+--10 Animal for Adoption
+
+SELECT 
+
+a.[Name]
+,YEAR(a.BirthDate) AS BirthYear
+,[at].AnimalType
+
+FROM Animals AS a
+INNER JOIN AnimalTypes AS [at] ON a.AnimalTypeId = [at].Id
+ WHERE OwnerId IS NULL AND YEAR(BirthDate) > 2017 AND [at].AnimalType <> 'Birds'
+ ORDER BY a.[Name]
+
 
