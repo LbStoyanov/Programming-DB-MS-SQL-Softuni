@@ -147,4 +147,20 @@ INNER JOIN AnimalTypes AS [at] ON a.AnimalTypeId = [at].Id
  WHERE OwnerId IS NULL AND YEAR(BirthDate) > 2017 AND [at].AnimalType <> 'Birds'
  ORDER BY a.[Name]
 
+ --11. All Volunteers in a Department
+
+ CREATE or alter FUNCTION udf_GetVolunteersCountFromADepartment (@VolunteersDepartment VARCHAR(30))
+RETURNS INT
+AS
+BEGIN
+	DECLARE @Count INT;
+    SELECT @Count = COUNT(v.Id) FROM Volunteers AS v
+	LEFT JOIN VolunteersDepartments AS vd ON v.DepartmentId = vd.Id
+	WHERE vd.DepartmentName = @VolunteersDepartment
+	RETURN @Count;
+END;
+
+
+SELECT dbo.udf_GetVolunteersCountFromADepartment ('Education program assistant')
+
 
