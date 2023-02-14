@@ -123,4 +123,15 @@ WHERE [at].AnimalType = 'Mammals'
 ORDER BY o.[Name], a.[Name] DESC
 
 --TASK 09 - Volunteers in Sofia
+SELECT 
+		 v.[Name]
+		,v.PhoneNumber
+		,REPLACE(REPLACE(v.[Address], 'Sofia', ''), ',', '') AS [Address]
+
+FROM Volunteers AS v
+LEFT JOIN VolunteersDepartments AS vd ON v.DepartmentId = vd.Id
+WHERE vd.DepartmentName = 'Education program assistant'
+AND v.[Address] LIKE '%Sofia%'
+ORDER BY v.[Name]
+
 
