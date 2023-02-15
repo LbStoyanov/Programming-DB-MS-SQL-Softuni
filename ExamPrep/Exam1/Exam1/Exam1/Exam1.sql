@@ -163,4 +163,6 @@ END;
 
 SELECT dbo.udf_GetVolunteersCountFromADepartment ('Education program assistant')
 
+--12.Animals with Owner or Not
+
 
