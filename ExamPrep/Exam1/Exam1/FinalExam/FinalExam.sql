@@ -125,3 +125,23 @@ ORDER BY bg.[Name], bg.Rating DESC
 
 --09. Creators with Emails
 
+SELECT Rating.FullName, Rating.Email, MAX(Rating) AS Rating
+FROM (
+	SELECT CONCAT(c.FirstName, ' ', c.LastName) AS FullName, c.Email AS Email, bg.Rating AS Rating
+	FROM Creators AS c
+	INNER JOIN CreatorsBoardgames AS cb ON c.Id = cb.CreatorId
+	LEFT JOIN Boardgames AS bg ON cb.BoardgameId = bg.Id
+	WHERE c.Email LIKE '%.com'
+	GROUP BY c.FirstName,c.LastName,c.Email,bg.Rating
+
+) AS Rating
+GROUP BY Rating.FullName,Rating.Email
+ORDER BY FullName
+
+--10. Creators by Rating
+
+
+--11. Creator with Boardgames
+
+
+--12. Search for Boardgame with Specific Category
