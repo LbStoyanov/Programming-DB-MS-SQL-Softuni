@@ -9,6 +9,8 @@ Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Exam2", "..\..\Exam2\Exam2.
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Exam3", "..\..\Exam3\Exam3\Exam3.sqlproj", "{A53069C1-8AC4-4E71-9984-153BD3BB2685}"
 EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "FinalExam", "FinalExam\FinalExam.sqlproj", "{CFEA188A-269F-4908-92BE-EA10176CC13D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,12 @@ Global
 		{A53069C1-8AC4-4E71-9984-153BD3BB2685}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A53069C1-8AC4-4E71-9984-153BD3BB2685}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A53069C1-8AC4-4E71-9984-153BD3BB2685}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{CFEA188A-269F-4908-92BE-EA10176CC13D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFEA188A-269F-4908-92BE-EA10176CC13D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFEA188A-269F-4908-92BE-EA10176CC13D}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{CFEA188A-269F-4908-92BE-EA10176CC13D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFEA188A-269F-4908-92BE-EA10176CC13D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CFEA188A-269F-4908-92BE-EA10176CC13D}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
