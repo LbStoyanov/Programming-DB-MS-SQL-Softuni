@@ -92,3 +92,17 @@ SET [Name] = CONCAT( (SELECT TOP 1 [Name] FROM Boardgames WHERE YearPublished >=
 -- 04. Delete
 
 DELETE FROM Addresses WHERE Town LIKE 'L%'
+
+--05. Boardgames by Year of Publication
+SELECT   [Name]
+		,Rating
+FROM Boardgames
+ORDER BY YearPublished,[Name] DESC
+
+--06. Boardgames by Category
+
+SELECT bg.Id,bg.[Name], bg.YearPublished,c.[Name]
+FROM Boardgames AS bg
+LEFT JOIN Categories AS c ON bg.CategoryId = c.Id
+WHERE c.[Name] = 'Strategy Games' OR c.[Name] = 'Wargames'
+ORDER BY bg.YearPublished DESC
