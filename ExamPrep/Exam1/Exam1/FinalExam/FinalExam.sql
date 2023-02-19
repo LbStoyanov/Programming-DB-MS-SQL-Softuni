@@ -83,15 +83,23 @@ VALUES
 -- 03. Update
 
 UPDATE PlayersRanges
-SET PlayersMax = (SELECT Id FROM PlayersRanges WHERE PlayersMin = 2 AND PlayersMax = 2) + 1;
+SET PlayersMax = PlayersMax + 1
+WHERE PlayersMin = 2 AND PlayersMax = 2
 
 UPDATE Boardgames
-SET [Name] = CONCAT( (SELECT TOP 1 [Name] FROM Boardgames WHERE YearPublished >= 2020) ,'v2')
+SET [Name] = CONCAT( [Name] ,'V2')
+WHERE YearPublished >= 2020
 
 
 -- 04. Delete
 
-DELETE FROM Addresses WHERE Town LIKE 'L%'
+DELETE CreatorsBoardgames WHERE BoardgameId IN (SELECT Id FROM Boardgames WHERE PublisherId IN(SELECT ID FROM Publishers 
+WHERE AddressId IN (SELECT Id FROM Addresses WHERE Town IS NOT NULL AND Town LIKE 'L%')))
+DELETE Boardgames 
+WHERE PublisherId in (SELECT ID FROM Publishers 
+WHERE AddressId IN (SELECT Id FROM Addresses WHERE Town IS NOT NULL AND Town LIKE 'L%'))
+DELETE Publishers WHERE AddressId IN(SELECT ID FROM Addresses WHERE Town IS NOT NULL AND Town LIKE 'L%')
+DELETE FROM Addresses WHERE Town IS NOT NULL AND Town LIKE 'L%'
 
 --05. Boardgames by Year of Publication
 SELECT   [Name]
@@ -140,8 +148,49 @@ ORDER BY FullName
 
 --10. Creators by Rating
 
-
+SELECT c.LastName,CEILING(AVG(bg.Rating)) AS AverageRating ,p.[Name] AS PublisherName 
+FROM Creators AS c
+INNER JOIN CreatorsBoardgames AS cb ON c.Id = cb.CreatorId
+LEFT JOIN Boardgames AS bg ON cb.BoardgameId = bg.Id
+LEFT JOIN Publishers AS p ON bg.PublisherId = p.Id
+WHERE p.[Name] = 'Stonemaier Games'
+GROUP BY bg.Rating,c.LastName, p.[Name]
+ORDER BY AVG(bg.Rating) DESC
 --11. Creator with Boardgames
+CREATE FUNCTION udf_CreatorWithBoardgames(@name VARCHAR(30)) 
+RETURNS INT
+AS
+BEGIN
+	DECLARE @TotalBoardGamesNumber INT;
 
+    SELECT 
+	@TotalBoardGamesNumber =  COUNT(bg.Id)
+	FROM Creators AS c
+	LEFT JOIN CreatorsBoardgames AS cb ON c.Id = cb.CreatorId
+	LEFT JOIN Boardgames AS bg ON cb.BoardgameId = bg.Id
+	WHERE c.FirstName = @name
+	GROUP BY C.Id;
+RETURN @TotalBoardGamesNumber
+END;
 
 --12. Search for Boardgame with Specific Category
+
+CREATE PROCEDURE usp_SearchByCategory(@category VARCHAR(50)) 
+AS
+BEGIN
+						    SELECT  bg.[Name] AS [Name], 
+									bg.YearPublished AS YearPublished,
+									bg.Rating AS Rating,
+									c.[Name] AS CategoryName,
+									p.[Name] AS PublisherName,
+									CONCAT(pr.PlayersMin, ' ', 'people') AS MinPlayers,
+									CONCAT(pr.PlayersMax, ' ', 'people') AS MaxPlayers
+								
+							FROM Boardgames AS bg
+							LEFT JOIN Categories AS c ON bg.CategoryId = c.Id
+							LEFT JOIN Publishers AS p ON bg.PublisherId = p.Id
+							LEFT JOIN PlayersRanges AS  pr ON bg.PlayersRangeId = pr.Id
+							WHERE c.[Name] = @category
+							ORDER BY p.[Name],bg.YearPublished DESC
+
+END
