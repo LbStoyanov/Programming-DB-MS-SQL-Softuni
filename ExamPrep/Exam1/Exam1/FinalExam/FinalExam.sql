@@ -79,3 +79,16 @@ VALUES
 ('Agman Games', 5, 'www.agmangames.com', '+16546135542'),
 ('Amethyst Games', 7, 'www.amethystgames.com', '+15558889992'),
 ('BattleBooks', 13, 'www.battlebooks.com', '+12345678907')
+
+-- 03. Update
+
+UPDATE PlayersRanges
+SET PlayersMax = (SELECT Id FROM PlayersRanges WHERE PlayersMin = 2 AND PlayersMax = 2) + 1;
+
+UPDATE Boardgames
+SET [Name] = CONCAT( (SELECT TOP 1 [Name] FROM Boardgames WHERE YearPublished >= 2020) ,'v2')
+
+
+-- 04. Delete
+
+DELETE FROM Addresses WHERE Town LIKE 'L%'
